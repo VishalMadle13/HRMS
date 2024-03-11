@@ -16,6 +16,10 @@ data class Department(
     var id : String = "",
     var department : String = "",
     var description : String = "",
-    @OneToMany(mappedBy = "department", cascade = [CascadeType.ALL]) @JsonIgnoreProperties("employee")
+    @OneToMany(mappedBy = "department", cascade = [CascadeType.ALL]) @JsonIgnoreProperties("employees")
     var employees : List<Employee> = ArrayList()
-)
+){
+    override fun toString(): String {
+        return "Department(id=$id, department='$department', description='$description')"
+    }
+}

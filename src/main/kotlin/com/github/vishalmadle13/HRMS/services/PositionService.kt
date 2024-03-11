@@ -1,7 +1,6 @@
 package com.github.vishalmadle13.HRMS.services
 
-import com.github.vishalmadle13.HRMS.entites.Position
-import com.github.vishalmadle13.HRMS.payloads.PositionDto
+ import com.github.vishalmadle13.HRMS.payloads.PositionDto
 import org.springframework.stereotype.Service
 
 @Service

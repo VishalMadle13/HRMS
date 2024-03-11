@@ -16,7 +16,6 @@ data class PositionDto (
     var id : String = "",
     @field:Size(min=5 , max = 50)
     var title : String = "",
-    @field:NotBlank(message = "The salary is required.")
     var salary : Long ? = null,
     @field:Size(min=10)
     var responsibility : String = "",

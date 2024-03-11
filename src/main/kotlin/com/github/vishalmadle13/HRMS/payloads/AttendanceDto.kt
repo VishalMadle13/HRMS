@@ -1,12 +1,17 @@
 package com.github.vishalmadle13.HRMS.payloads
 
+import lombok.AllArgsConstructor
+import lombok.Data
+import lombok.NoArgsConstructor
 import java.time.LocalDate
 import java.util.Date
-
+@NoArgsConstructor
+@AllArgsConstructor
+@Data
 data class AttendanceDto (
-    val id : Long ? = null,
-    val employee : EmployeeDto,
-    val date : LocalDate,
-    val clockInTime : Date,
-    val clockOutTime: Date
+    var id : Long ? = null,
+    var employee : EmployeeDto = EmployeeDto(),
+    var date : LocalDate = LocalDate.now(),
+    var clockInTime : Date = Date(),
+    var clockOutTime: Date = Date()
 )

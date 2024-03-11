@@ -12,12 +12,12 @@ import java.util.Date
 @Entity
 data class Attendance (
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
-    val id : Long ? = null,
+    var id : Long ? = null,
     @ManyToOne
     @JoinColumn(name = "employee_id", nullable = false)
-    val employee : Employee,
-    val date : LocalDate,
-    val clockInTime : Date,
-    val clockOutTime: Date
+    var employee : Employee = Employee(),
+    var date : LocalDate = LocalDate.now(),
+    var clockInTime : Date = Date(),
+    var clockOutTime: Date = Date()
 )
 

@@ -24,4 +24,10 @@ data class Employee (
     @ManyToOne @JoinColumn(name="position_id") @JsonIgnore
     var position: Position = Position(),
     var organisationMail : String = ""
-    )
+    ){
+    override fun toString(): String {
+        return "Employee(id=$id, firstName='$firstName', lastName='$lastName',dateOfBirth=$dateOfBirth," +
+                " gender=$gender, personalMail=$personalMail, organisationMail=$organisationMail,phoneNumber=$phoneNumber,address=$address," +
+                " joinDate=$joinDate,department=${department.id}, position=${position.id} "
+    }
+}

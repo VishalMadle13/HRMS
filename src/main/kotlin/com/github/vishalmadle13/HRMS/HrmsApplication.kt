@@ -10,5 +10,4 @@ class HrmsApplication
 
 fun main(args: Array<String>) {
 	runApplication<HrmsApplication>(*args)
-
 }

@@ -26,7 +26,7 @@ data class Position (
     @Column(name = "id",  insertable = false, updatable = false, nullable = false)
     var id :String  = "",
     var title : String = "",
-    var salary : Long ? = null,
+    var salary : Long = 0,
     var responsibility : String = "",
     @OneToMany(mappedBy = "position", cascade = [CascadeType.ALL] ) @JsonIgnore @JsonProperty("position")
     var employees : List<Employee>  = ArrayList()

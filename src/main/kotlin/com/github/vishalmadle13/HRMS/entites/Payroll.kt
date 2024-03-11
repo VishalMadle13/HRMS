@@ -9,13 +9,13 @@ import jakarta.persistence.ManyToOne
 
 @Entity
 data class Payroll(
-    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
-    val id : Long ? = null,
+    @Id @GeneratedValue(strategy = GenerationType.AUTO)
+    var id : Long ?= null,
     @ManyToOne @JoinColumn(name="employee_id", nullable = false)
-    val employee: Employee,
-    val month : Int,
-    val year : String,
-    val basicSalary : Long,
-    val deduction : Long,
-    val netSalary : Long
+    var employee: Employee = Employee(),
+    var month : Int ?= null,
+    var year : String ?= null,
+    var basicSalary : Long ?= null,
+    var deduction : Long ?= null,
+    var netSalary : Long ?= null
 )

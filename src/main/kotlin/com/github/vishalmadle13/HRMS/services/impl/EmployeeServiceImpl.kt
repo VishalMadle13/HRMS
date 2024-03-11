@@ -27,12 +27,26 @@ class EmployeeServiceImpl (
     @Autowired val departmentRepo: DepartmentRepo
 ) : EmployeeService{
     override fun getAllEmployees() : List<EmployeeDto> {
-        return employeeRepo.findAll().stream().map { employee-> modelMapper.map(employee,EmployeeDto::class.java)}.collect(Collectors.toList())
+        return employeeRepo
+            .findAll()
+            .stream()
+            .map {
+                employee-> modelMapper.map(employee,EmployeeDto::class.java)
+            }
+            .collect(Collectors.toList())
     }
     override fun getEmployeeById(employeeId: Long) : EmployeeDto? {
-        val employeeEntity:Employee = employeeRepo.findById(employeeId).orElseThrow{ResourceNotFoundException("Employee","Id", employeeId )}
-        return modelMapper.map(employeeEntity,EmployeeDto::class.java)
+        val employeeEntity:Employee = employeeRepo
+            .findById(employeeId)
+                .orElseThrow{
+                    ResourceNotFoundException("Employee","Id", employeeId )
+                }
+
+        return modelMapper.map(
+            employeeEntity,EmployeeDto::class.java
+        )
     }
+
     override fun addEmployee(employeeDto: EmployeeDto) : EmployeeDto {
         var employeeEntity : Employee = modelMapper.map(employeeDto, Employee::class.java)
         val position : Position = positionRepo
@@ -45,13 +59,18 @@ class EmployeeServiceImpl (
                 .orElseThrow{
                     ResourceNotFoundException("Department","Id",employeeEntity.department.id )
                 }
+
         employeeEntity.position = position
         employeeEntity.department = department
         val savedEmployee : Employee = employeeRepo.save(employeeEntity)
         department.employees.addLast(savedEmployee)
         position.employees.addLast(savedEmployee)
-        return modelMapper.map(savedEmployee,EmployeeDto::class.java)
+
+        return modelMapper.map(
+            savedEmployee,EmployeeDto::class.java
+        )
     }
+
     override fun updateEmployee(employeeId: Long, employeeDto: EmployeeDto) : EmployeeDto ? {
         employeeRepo
             .findById(employeeId)
@@ -70,10 +89,17 @@ class EmployeeServiceImpl (
                 .orElseThrow {
                     ResourceNotFoundException("Department","Id",updatedEmployee.department.id)
                 }
-        return modelMapper.map(employeeRepo.save(updatedEmployee),EmployeeDto::class.java)
+
+        return modelMapper.map(
+            employeeRepo.save(updatedEmployee),EmployeeDto::class.java
+        )
     }
     override fun deleteEmployee(employeeId: Long) {
-        employeeRepo.findById(employeeId).orElseThrow { ResourceNotFoundException("Employee","Id", employeeId ) }
+        employeeRepo
+            .findById(employeeId)
+                .orElseThrow {
+                    ResourceNotFoundException("Employee","Id", employeeId )
+                }
         employeeRepo.deleteById(employeeId)
     }
 }

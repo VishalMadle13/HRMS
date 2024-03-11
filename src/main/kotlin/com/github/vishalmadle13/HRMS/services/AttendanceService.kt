@@ -1,13 +1,13 @@
 package com.github.vishalmadle13.HRMS.services
 
-import com.github.vishalmadle13.HRMS.entites.Attendance
+ import com.github.vishalmadle13.HRMS.payloads.AttendanceDto
 import org.springframework.stereotype.Service
 
 @Service
 interface AttendanceService {
-    fun getAllAttendance() : List<Attendance>
-    fun getAttendanceById(attendanceId : Long) : Attendance ?
-    fun addAttendance(attendance: Attendance) : Attendance
-    fun updateAttendance(attendanceId: Long,attendance: Attendance)  : Attendance
+    fun getAllAttendance() : List<AttendanceDto>
+    fun getAttendanceById(attendanceId : Long) : AttendanceDto ?
+    fun addAttendance(attendanceDto: AttendanceDto) : AttendanceDto
+    fun updateAttendance(attendanceId: Long,attendanceDto: AttendanceDto)  : AttendanceDto
     fun deleteAttendance(attendanceId: Long)
 }
